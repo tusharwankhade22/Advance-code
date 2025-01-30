@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Student Management System</title>
+<title>Insert title here</title>
 <style type="text/css">
 body {
     font-family: Arial, sans-serif;
@@ -35,8 +35,7 @@ label {
     font-weight: bold;
 }
 
-input[type="email"],
-input[type="password"] {
+input[type="text"] {
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
@@ -63,47 +62,19 @@ input:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
-h4 {
-    color: #333;
-    font-size: 16px;
-    margin-top: 10px;
-}
-
-h4 a {
-    color: #4CAF50;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-h4 a:hover {
-    text-decoration: underline;
-}
 </style>
 </head>
-<body> 
-    <div class="main">
-       <label align="center" style="font-size: 24px; font-weight: bold; display: block; margin-bottom: 15px;">Login Page</label>
+<body>
 
-       <form action="./admin-auth" method="post">
-           <label for="email">Email:</label>
-           <input type="email" name="email" id="email">
+<div class="main">
+       <label align="center" style="font-size: 24px; font-weight: bold; display: block; margin-bottom: 15px;">Search by Name</label>
 
-           <label for="password">Password</label>
-           <input type="password" name="password" id="password">
+       <form action="./name" method="post">
+           <label for="name">Name</label>
+           <input type="text" name="name" id="name">
            
-           <input type="submit" name="login">
+           <input type="submit" name="Search" value="search">
        </form>
-       
-       <% 
-        String message=(String)request.getAttribute("message");
-        if(message !=null){
-       %>
-        <h4><%= message %></h4>
-       <% } %>
-       <h4 align="center">
-			New user?<a href="sign-up-page">signup</a>
-	   </h4>
     </div>
-    
 </body>
 </html>

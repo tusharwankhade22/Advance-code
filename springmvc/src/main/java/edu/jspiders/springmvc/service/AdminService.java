@@ -14,10 +14,10 @@ public class AdminService {
 	@Autowired
 	AdminDAO adminDAO;
 
-	public boolean addAdmin(String email, long mob, String password) {
+	public boolean addAdmin(String email, long phonono, String password) {
 		Admin admin=new Admin();
 		admin.setEmail(email);
-		admin.setMob(mob);
+		admin.setMob(phonono);
 		admin.setPassword(password);
 		
 		try {
@@ -43,6 +43,34 @@ public class AdminService {
 		} catch (NoResultException e) {
 			e.printStackTrace();
 			return null;
+		}
+		
+	}
+
+	public boolean deleteAdmin(int id) {
+		try {
+			adminDAO.deleteAdmin(id);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+			
+		}
+		
+	}
+
+	public Admin findAdminById(int id) {
+		return adminDAO.findAdminById(id);
+		
+	}
+
+	public boolean updateAdmin(int id, String email, String password, long phoneno) {
+		try {
+			adminDAO.updateAdmin(id,email,password,phoneno);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
 		
 	}

@@ -1,3 +1,4 @@
+<%@page import="edu.jspiders.springmvc.dto.Admin"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,7 +17,6 @@ body {
     align-items: center;
     height: 100vh;
 }
-
 .main {
     background-color: #ffffff;
     padding: 20px 30px;
@@ -36,6 +36,8 @@ label {
 }
 
 input[type="email"],
+input[type="text"],
+input[type="tel"],
 input[type="password"] {
     padding: 10px;
     margin-bottom: 15px;
@@ -63,47 +65,41 @@ input:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
-h4 {
-    color: #333;
-    font-size: 16px;
-    margin-top: 10px;
-}
-
-h4 a {
-    color: #4CAF50;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-h4 a:hover {
-    text-decoration: underline;
+.backtohome a{
+  color:#4CAF50;
 }
 </style>
 </head>
 <body> 
+    <%
+          Admin admin=(Admin)request.getAttribute("admin");
+          int id=admin.getId();
+          String email=admin.getEmail();
+          String password=admin.getPassword();
+          long phone=admin.getMob();
+      %>
+   
     <div class="main">
-       <label align="center" style="font-size: 24px; font-weight: bold; display: block; margin-bottom: 15px;">Login Page</label>
+        <label align="center" style="font-size: 24px; font-weight: bold; display: block; margin-bottom: 15px;">Edit Admin Page</label>
 
-       <form action="./admin-auth" method="post">
-           <label for="email">Email:</label>
-           <input type="email" name="email" id="email">
-
-           <label for="password">Password</label>
-           <input type="password" name="password" id="password">
+       <form action="update_admin" method="post">
+           <label for="id">Id:</label>
+           <input type="text" name="id" id="id" value="<%=id%>" readonly="readonly">
            
-           <input type="submit" name="login">
+           <label for="email">Email:</label>
+           <input type="email" name="email" id="email" value="<%=email%>">
+           
+           <label for="phoneno">Phone No:</label>
+           <input type="tel" name="phoneno" id="phoneno" value="<%=phone%>">
+           
+           <label for="password">Password</label>
+           <input type="password" name="password" id="password" value="<%=password%>">
+           
+           <input type="submit" name="update" vlaue="update">
        </form>
+       <br><br>
+       <div align="center" class="backtohome"><a href="home">Back to home</a></div>
        
-       <% 
-        String message=(String)request.getAttribute("message");
-        if(message !=null){
-       %>
-        <h4><%= message %></h4>
-       <% } %>
-       <h4 align="center">
-			New user?<a href="sign-up-page">signup</a>
-	   </h4>
     </div>
-    
 </body>
 </html>

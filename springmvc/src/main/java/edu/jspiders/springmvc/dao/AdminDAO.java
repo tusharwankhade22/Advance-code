@@ -54,4 +54,40 @@ public class AdminDAO {
 		
 	}
 
+	public void deleteAdmin(int id) {
+		openConnection();
+		entityTransaction.begin();
+		Admin adminTobeDeleted = entityManager.find(Admin.class, id);
+		entityManager.remove(adminTobeDeleted);
+		entityTransaction.commit();
+		closeConnection();
+		
+	}
+
+	public Admin findAdminById(int id) {
+		openConnection();
+		Admin admin = entityManager.find(Admin.class, id);
+		closeConnection();
+		return admin;
+	}
+
+	public void updateAdmin(int id, String email, String password, long phoneno) {
+		try {
+			openConnection();
+			System.out.println(id);
+			entityTransaction.begin();
+			Admin admin = entityManager.find(Admin.class, id);
+			admin.setEmail(email);
+			admin.setMob(phoneno);
+			admin.setPassword(password);
+			entityManager.persist(admin);
+			entityTransaction.commit();
+		} finally {
+			closeConnection();
+			System.out.println("Hii");
+		}
+		
+		
+	}
+
 }

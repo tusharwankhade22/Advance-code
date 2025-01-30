@@ -64,6 +64,21 @@ input:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
+h4 {
+    color: #333;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+h4 a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+h4 a:hover {
+    text-decoration: underline;
+}
 </style>
 </head>
 <body> 
@@ -88,6 +103,10 @@ input:focus {
        %>
         <h4><%= message %></h4>
        <% } %>
+       <h4 align="center">
+			Already an user?<a href="login-page">login</a>
+	   </h4>
+       
     </div>
 </body>
 </html>
